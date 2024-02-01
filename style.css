@@ -1,0 +1,94 @@
+html {
+  font-family: "Universal Condensed", sans-serif;
+  color: white;
+  background-color: black;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 85%;
+  background-color: black
+}
+
+/* Home Page */
+/* Search Bar */
+.search-bar{
+  width: 80%;
+  height: 40px;
+  margin-top: 1em;
+  padding: 5px;
+}
+
+input {
+  width: 70%;
+  height: 70px;
+}
+
+button{
+  width: 70px;
+  height: 70px;
+}
+
+/* Search Results Section */
+
+#search-profile{
+  width: 70px;
+  border-radius: 50%;
+}
+
+.hidden{
+  display: none;
+}
+
+/* Track Page */
+
+section {
+  /* margin: 1px; */
+  padding: 3em;
+  border: 1px solid white;
+}
+
+.track {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.album {
+  display: flex;
+  justify-content: space-around;
+}
+
+#track-list {
+  list-style-type: none;
+}
+
+/* Results Modal */
+
+.results-container {
+  /* display: none; */
+}
+
+/* Media query */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* max-width: 500px; */
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
