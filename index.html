@@ -26,7 +26,7 @@
         <div class="search-bar">
           <input
             type="text"
-            placeholder="Search by track, album, artist or location"
+            placeholder="Enter artist name"
             id="search-input"
           />
           <button id="search-btn">
@@ -35,14 +35,23 @@
         </div>
 
         <div class="results-container">
-          <ul class="songs hidden" id="song-results">
-            <h3>Songs</h3>
-            <p>No Results</p>
-            <!-- <li>ramen</li>
-            <li>ramen noodles</li>
-            <li>original ramen noodles</li> -->
-            <!-- Add more suggestions here -->
-          </ul>
+
+          <div class="artists">
+            <h3>Artists</h3>
+            <!-- <p>No Results</p> -->
+            <!-- <div class="artist">
+              <img src="" alt="artist profile picture" />
+              <div class="artist-name">Artist Name</div>
+            </div> -->
+          </div>
+          
+          <div>          
+            <ul class="songs" id="song-results">
+              <h3>Top Songs</h3>
+              <!-- <p>No Results</p> -->
+              <!-- <li>Song Name</li> -->
+            </ul>
+          </div>
 
           <div class="albums">
             <h3>Albums</h3>
@@ -56,22 +65,15 @@
             <!-- Repeat for other albums -->
           </div>
 
-          <div class="artists">
-            <h3>Artists</h3>
-            <!-- <p>No Results</p> -->
-            <!-- <div class="artist">
-              <img src="" alt="artist profile picture" />
-              <div class="artist-name">Artist Name</div>
-            </div> -->
-          </div>
 
         </div>
       </div>
     </header>
-
+    <h2 class="section-header">Highlight Albums</h2>
     <!-- Highlight Albums -->
-    <div class="highlight-albums">
-      <div class="slide">
+    <div class="highlight-albums-container">
+      
+      <div class="slider">
         <!-- <div class="numbertext">1 / 6</div>
         <img src="" style="width: 100%" /> -->
       </div>

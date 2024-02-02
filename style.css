@@ -1,3 +1,9 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-family: "Universal Condensed", sans-serif;
   color: white;
@@ -6,6 +12,7 @@ html {
 
 body {
   margin: 0 auto;
+  padding: 0;
   max-width: 85%;
   background-color: black
 }
@@ -14,9 +21,13 @@ body {
 /* Search Bar */
 .search-bar{
   width: 80%;
-  height: 40px;
-  margin-top: 1em;
-  padding: 5px;
+  /* height: 40px; */
+  margin: 0 auto;
+  margin-top: 50px;
+  /* padding: 5px; */
+  display: flex;
+  justify-content: center;
+  /* border: 3px solid white; */
 }
 
 input {
@@ -40,36 +51,85 @@ button{
   display: none;
 }
 
-/* Track Page */
+/* Results */
 
-section {
-  /* margin: 1px; */
-  padding: 3em;
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 40%;
+  /* width: 60%; */
+  margin: 0 auto;
+  margin-top: 50px;
   border: 1px solid white;
 }
 
-.track {
-  font-size: 1.5rem;
+.albums{
+  /* display: flex; */
+  /* justify-content: space-around; */
+}
+
+.album{
   display: flex;
-  justify-content: space-around;
-  width: 30%;
+  gap: 1%;
+  /* flex-direction: row; */
+  /* align-self:  */
+}
+
+.album img{
+  width: 80px;
+}
+
+/* Highlights Album */
+
+h2, h3{
+  padding: 2em 0 1em 0;
+  text-decoration: underline dotted;
+}
+
+.highlight-albums-container{
+  width: 60%vmin;
   margin: 0 auto;
+  overflow: hidden;
+  padding:  20px;
+  margin-top: 60px;
+  /* border: 1px solid white; */
 }
 
-.album {
+.slider{
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  padding: 10px;
+  animation: slide 16s infinite;
 }
 
-#track-list {
-  list-style-type: none;
+@keyframes slide {
+  0%{
+    transform: translateX(0);
+  }
+  25%{
+    transform: translateX(0);
+  }
+  30%{
+    transform: translateX(-100%);
+  }
+  50%{
+    transform: translateX(-100%);
+  }
+  55%{
+    transform: translateX(-200%);
+  }
+  75%{
+    transform: translateX(-200%);
+  }
+  80%{
+    transform: translateX(-300%);
+  }
+  100%{
+    transform: translateX(-300%);
+  }
 }
 
-/* Results Modal */
-
-.results-container {
-  /* display: none; */
-}
 
 /* Media query */
 /* Extra small devices (phones, 600px and down) */

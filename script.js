@@ -8,23 +8,23 @@ console.log('working')
 const searchBtn = document.querySelector('#search-btn')
 const searchInput = document.querySelector('#search-input')
 
+const resultsContainer = document.querySelector('.results-container')
 const artistsResult = document.querySelector('.artists')
 const albumsResult = document.querySelector('.album')
 const albumNoResult = document.querySelector('#album-no-result')
+const songResults = document.querySelector('#song-results')
 
-
-
-const slide = document.querySelector('.slide')
+const slider = document.querySelector('.slider')
 
 
 
 // Track Page
-const trackResultEl = document.querySelector('#track')
-const trackNameEl = document.querySelector('#track-name')
-const artistNameEl = document.querySelector('#artist-name')
-const albumNameEl = document.querySelector('#album-name')
-const albumCoverEl = document.querySelector('#album-cover')
-const trackListEl = document.querySelector('#track-list')
+// const trackResultEl = document.querySelector('#track')
+// const trackNameEl = document.querySelector('#track-name')
+// const artistNameEl = document.querySelector('#artist-name')
+// const albumNameEl = document.querySelector('#album-name')
+// const albumCoverEl = document.querySelector('#album-cover')
+// const trackListEl = document.querySelector('#track-list')
 
 ///////////////////////////////////
 //// Event Listeners
@@ -38,7 +38,7 @@ searchInput.addEventListener('keypress', (e) => {
     const searchValue = document.querySelector('#search-input').value
 
     getArtistTopSongs(searchValue)
-    getData(searchValue)
+    // getData(searchValue)
     getArtistName(searchValue)
     getAlbums(searchValue)
   }
@@ -49,7 +49,7 @@ searchBtn.addEventListener('click', () => {
   if (searchInput.value) {
 
     getArtistTopSongs(searchValue)
-    getData()
+    // getData()
     getArtistName(searchValue)
     getAlbums(searchValue)
   }
@@ -59,7 +59,7 @@ searchBtn.addEventListener('click', () => {
 ///////////////////////////////////
 //// Functions
 
-async function getData(searchValue) {
+// async function getData(searchValue) {
   // const searchValue = document.querySelector('#search-input').value
 
   // Return Artist details from artist name
@@ -75,7 +75,7 @@ async function getData(searchValue) {
   // let countryResponse = await axios.get(`http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${searchValue}&api_key=47edfd3289e7fef8424cfccaa16adf82&format=json`)
 
   // console.log('this is response', artistResponse)
-}
+// }
 
 async function getHighlightAlbums() {
   let response = await axios.get(`https://theaudiodb.com/api/v1/json/523532/trending.php?country=us&type=itunes&format=albums`)
@@ -83,7 +83,7 @@ async function getHighlightAlbums() {
   
   albumsArr.forEach((album, index) => {
     let albumCover = album.strAlbumThumb
-    slide.innerHTML += `<div class="numbertext">${index+1} / ${albumsArr.length}</div>
+    slider.innerHTML += `<div class="img-container">${index+1} / ${albumsArr.length}</div>
     <img src='${album.strAlbumThumb}' style="width: 100%" />`;
     // console.log(album.strAlbumThumb)
     // console.log('index is:', index)
@@ -91,6 +91,8 @@ async function getHighlightAlbums() {
 }
 
 async function getArtistName(searchValue) {
+  // Clear any previous search results
+  artistsResult.innerHTML = ``
   // if returns a value
   let artistResponse = await axios.get(`https://theaudiodb.com/api/v1/json/523532/search.php?s=${searchValue}`)
   let artistNameArr = artistResponse.data.artists
@@ -104,6 +106,7 @@ async function getArtistName(searchValue) {
     artistNameArr.forEach((artist) => {
       // if the artist result is one or more, try 'John Williams' return two artists
       artistsResult.innerHTML += `
+      <h3>Artists</h3>
       <div class="artist">
         <img id='search-profile' src="${artist.strArtistThumb}" alt="artist profile picture" />
         <div class="artist-name">${artist.strArtist}</div>
@@ -117,15 +120,28 @@ async function getArtistName(searchValue) {
 async function getArtistTopSongs(searchValue) {
   let topSongs = await axios.get(`https://theaudiodb.com/api/v1/json/523532/track-top10.php?s=${searchValue}`)
 
-  let song = topSongs.data.track
-  let songResults = document.querySelector('#song-results')
-  if (song === null) {
-    songResults.classList.toggle('hidden')
+  let songsArr = topSongs.data.track
+
+  if (songsArr === null) {
+    songResults.innerHTML = `
+    <h3>Songs</h3>
+    <p>No Results</p>
+    `
+  } else {
+    songsArr.forEach((song) => {
+      songResults.innerHTML += `
+      <li>${song.strTrack}</li>
+      `
+    })
   }
-  console.log('top songs', topSongs)
+  console.log('top songs', songsArr)
+  console.log('topSongs', topSongs)
 }
 
 async function getAlbums(searchValue) {
+  // Clear previous search results
+  albumsResult.innerHTML = ``
+
   let artistAlbumsResponse = await axios.get(`https://theaudiodb.com/api/v1/json/523532/searchalbum.php?s=${searchValue}`)
 
   let albumsArr = artistAlbumsResponse.data.album
@@ -135,10 +151,11 @@ async function getAlbums(searchValue) {
   } else {
     albumsArr.forEach((album) => {
       albumsResult.innerHTML += `
-      <img src="${album.strAlbumThumb}" alt="album cover" />
-      <div class="album-name">${album.strAlbum}</div>
-      <div class="artist-name">${album.strArtist}</div>
-      <p>Herrrro</p>
+      <div>
+        <img src="${album.strAlbumThumb}" alt="album cover" />
+        <div class="album-name">${album.strAlbum}</div>
+        <div class="artist-name">${album.strArtist}</div>
+      </div>
       `
       // console.log(album)
     })
